@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="routeApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Address and Order Viewer Application</title>
+    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/styles.css" rel="stylesheet" >
+    <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-route/angular-route.min.js"></script>
+    <script src="assets/scripts/client.min.js"></script>
+    <!--this is so you don't need the #-->
+    <base href="/">
+</head>
+<body>
+    <div class="page-header">
+        <h1>Select from Address Display or Order Lookup By Date</br><small>select one of the buttons below</small></h1>
+    </div>
+
+    <div class="col-md-4"></div>
+    <a href="/address" class="btn btn-default active">Address Display</a>
+    <a href="/orderByDate" class="btn btn-default">Orders By Date Display</a>
+
+    <div ng-view>
+
+    </div>
+
+<div class="footer">copyright 2016 by mcrindustries</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<h2>Select a user from the list below</h2>
+
+<select>
+    <option ng-repeat="user in usersList" data={{user.id}}>{{user.name}}
+    </option>
+</select>
+<button ng-click="userSelected()" data={{user.id}}>Select user</button>
+
+
+<!--first attempt that wasn't a drop down list-->
+<!--<ul>-->
+<!--<li ng-repeat="user in usersList">{{user.name}}-->
+<!--&nbsp&nbsp<button class={{user.id}}>Select user</button>-->
+<!--</li>-->
+
+<!--</ul>-->

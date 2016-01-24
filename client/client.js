@@ -20,28 +20,39 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 }]);
 
+//controller to return addresses by selected user
 app.controller('AddressController', ['$scope', '$http', function($scope, $http){
     //get the list of all users
     $http.get('/users').then(function(results){
         $scope.usersList = results.data;
     });
 
-    //var selectedUser = $('')
-
-    $scope.userSelected = function () {
-        var id = $(".dropdown").data();
-        console.log(id);
+    //takes the id of selected user from html
+    $scope.userSelectedAddress = function (selectedUser) {
+        var id = selectedUser;
+        $http.get('/addresses/' + id).then(function(results){
+            $scope.addressList = results.data;
+        });
     }
 }]);
 
+//controller to return orders
 app.controller('OrderByDateController', ['$scope', '$http', function($scope, $http){
     //get the list of all users
     $http.get('/users').then(function(results){
         $scope.usersList = results.data;
     })
 
-    $scope.userSelected = function () {
-        console.log("button clicked");
+    //takes the id of selected user, start and end dates from html
+    $scope.userSelectedOrders = function (selectedUser, startDate, endDate) {
+        var id = selectedUser;
+        var start = startDate;
+        var end = endDate;
+
+        $http.get('/orders/' + id +'/' + start + '/' + end).then(function(results){
+            //$scope.ordersList = results.data;
+            //console.log($scope.ordersList);
+        });
     }
 }]);
 

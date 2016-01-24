@@ -1,16 +1,21 @@
 <h2>Select a user from the list below</h2>
 
-<select>
-    <option ng-repeat="user in usersList" data={{user.id}}>{{user.name}}
+<select class="selectUser" ng-model="selectedUser"
+        ng-options="obj.id as obj.name for obj in usersList">
+    <option value="" disabled selected hidden>Please choose from drop down</option>
+    <option ng-repeat="user in usersList">{{user.name}}
     </option>
 </select>
-<button ng-click="userSelected()" data={{user.id}}>Select user</button>
+
+<h2>Select a date range</h2>
+
+<br>
+    <input type="date" ng-model="startDate">Input start date</br>
+    <input type="date" ng-model="endDate">Input end date
+</form>
+
+<div class="spacer"></div>
+
+<button ng-click="userSelectedOrders(selectedUser, startDate, endDate)">Get Orders for selected user</button>
 
 
-<!--first attempt that wasn't a drop down list-->
-<!--<ul>-->
-<!--<li ng-repeat="user in usersList">{{user.name}}-->
-<!--&nbsp&nbsp<button class={{user.id}}>Select user</button>-->
-<!--</li>-->
-
-<!--</ul>-->

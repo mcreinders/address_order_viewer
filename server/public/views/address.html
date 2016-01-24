@@ -1,18 +1,23 @@
 <h2>Select a user from the list below</h2>
 
-<select>
-    <option ng-repeat="user in usersList" value={{user.id}}>{{user.name}}
+<select class="selectUser" ng-model="selectedUser"
+        ng-options="obj.id as obj.name for obj in usersList">
+    <option value="" disabled selected hidden>Please choose from drop down</option>
+    <option ng-repeat="user in usersList">{{user.name}}
     </option>
 </select>
 
+<div class="spacer"></div>
 
-<button class="userSelected" ng-click="userSelected()" data={{user.id}}>Select user</button>
+<button ng-click="userSelectedAddress(selectedUser)">Display addresses for selected user</button>
+
+<div class="spacer"></div>
+
+<div class="well col-md-4" ng-repeat="address in addressList">
+        <p><span>User Name: </span>{{address.name}}</p>
+        <p><span>Address Type: </span>{{address.address_type}}</p>
+        <p><span>Address: </span>{{address.address_street}}</p>
+        <p><span class="space"></span>{{address.address_city}}, {{address.address_state}} {{address.address_zip}}</p>
+</div>
 
 
-<!--first attempt that wasn't a drop down list-->
-<!--<ul>-->
-<!--<li ng-repeat="user in usersList">{{user.name}}-->
-<!--&nbsp&nbsp<button class={{user.id}}>Select user</button>-->
-<!--</li>-->
-
-<!--</ul>-->

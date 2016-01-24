@@ -1,3 +1,38 @@
 h1{
     color: lightblue;
 }
+
+.selectUser {
+    width: 200px;
+    height: 20px;
+}
+
+.page-header{
+    text-align: center;
+}
+
+.spacer{
+    padding: 20px;
+}
+
+.footer {
+    position: fixed;
+    height: 20px;
+    bottom: 0;
+    width: 100%;
+    background-color: lightblue;
+    text-align: center;
+}
+
+span {
+    font-weight: bold;
+}
+
+.space{
+    margin-left: 62px;
+}
+
+.well {
+    width: 32%;
+    margin: 5px 5px;
+}

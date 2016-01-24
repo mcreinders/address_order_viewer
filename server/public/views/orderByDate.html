@@ -7,15 +7,29 @@
     </option>
 </select>
 
-<h2>Select a date range</h2>
+<h3>Select a date range</h3>
 
-<br>
-    <input type="date" ng-model="startDate">Input start date</br>
-    <input type="date" ng-model="endDate">Input end date
+    <input type="date" ng-model="startDate">  Input start date</br>
+    <input type="date" ng-model="endDate">  Input end date
 </form>
 
 <div class="spacer"></div>
 
 <button ng-click="userSelectedOrders(selectedUser, startDate, endDate)">Get Orders for selected user</button>
+
+<div class="spacer"></div>
+
+<div ng-repeat="total in orderTotal">
+    <h4><span>The total order amount is: {{total.total_amt | currency}}</span></h4>
+</div>
+
+<div class="well col-md-4" ng-repeat="order in ordersList">
+    <p><span>User Name: </span>{{order.name}}</p>
+    <p><span>Order Amount: </span>{{order.amount | currency}}</p>
+    <p><span>Order Date: </span>{{order.order_date | date:'shortDate'}}</p>
+    <p><span>Address Type: </span>{{order.address_type}}</p>
+    <p><span>Address: </span>{{order.address_street}}</p>
+    <p><span class="space"></span>{{order.address_city}}, {{order.address_state}} {{order.address_zip}}</p>
+</div>
 
 

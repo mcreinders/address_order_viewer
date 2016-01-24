@@ -58,23 +58,42 @@ router.get('/orders/:id/:start/:end', function(request, response){
     var start = request.params.start;
     var end = request.params.end;
 
-    console.log(id, start, end);
-    console.log('hit orders router');
+    pg.connect(connectionString, function(err, client) {
 
+        var query = client.query("SELECT * FROM users JOIN orders ON users.id = orders.user_id JOIN addresses ON orders.ship_address_id = addresses.address_id WHERE orders.user_id = $1 AND orders.order_date BETWEEN $2 AND $3", [id, start, end]);
 
-    //pg.connect(connectionString, function(err, client) {
-    //
-    //    var query = client.query("SELECT * FROM addresses JOIN users ON users.id = addresses.user_id WHERE users.id = $1", [id]);
-    //
-    //    query.on('row', function(row) {
-    //        addressList.push(row);
-    //    });
-    //
-    //    query.on('end', function () {
-    //        client.end();
-    //        return response.json(addressList);
-    //    });
-    //});
+        query.on('row', function(row) {
+            ordersList.push(row);
+        });
+
+        query.on('end', function () {
+            client.end();
+            return response.json(ordersList);
+        });
+    });
+});
+
+//gets the sum of the order amount
+router.get('/orderTotal/:id/:start/:end', function(request, response){
+    var orderTotal = [];
+
+    var id = request.params.id;
+    var start = request.params.start;
+    var end = request.params.end;
+
+    pg.connect(connectionString, function(err, client) {
+
+        var query = client.query("SELECT SUM(orders.amount) AS Total_Amt FROM orders JOIN users ON users.id = orders.user_id JOIN addresses ON orders.ship_address_id = addresses.address_id WHERE orders.user_id = $1 AND orders.order_date BETWEEN $2 AND $3", [id, start, end]);
+
+        query.on('row', function(row) {
+            orderTotal.push(row);
+        });
+
+        query.on('end', function () {
+            client.end();
+            return response.json(orderTotal);
+        });
+    });
 });
 
 //route for the index.html file

@@ -46,12 +46,15 @@ app.controller('OrderByDateController', ['$scope', '$http', function($scope, $ht
     //takes the id of selected user, start and end dates from html
     $scope.userSelectedOrders = function (selectedUser, startDate, endDate) {
         var id = selectedUser;
-        var start = startDate;
-        var end = endDate;
+        var start = startDate.toISOString();
+        var end = endDate.toISOString();
 
         $http.get('/orders/' + id +'/' + start + '/' + end).then(function(results){
-            //$scope.ordersList = results.data;
-            //console.log($scope.ordersList);
+            $scope.ordersList = results.data;
+        });
+
+        $http.get('/orderTotal/' + id +'/' + start + '/' + end).then(function(results){
+            $scope.orderTotal = results.data;
         });
     }
 }]);

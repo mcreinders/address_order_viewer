@@ -19,17 +19,41 @@
 
 <div class="spacer"></div>
 
+<table>
+    <tr>
+        <th>User Name</th>
+        <th>Order Amount</th>
+        <th>Order Date</th>
+        <th>Address Type</th>
+        <th>Address</th>
+    </tr>
+
+<tr ng-repeat="order in ordersList">
+    <td>{{order.name}}</td>
+    <td>{{order.amount | currency}}</td>
+    <td>{{order.order_date | date:'shortDate'}}</td>
+    <td>{{order.address_type}}</td>
+    <td>{{order.address_street}}, {{order.address_city}}, {{order.address_state}} {{order.address_zip}}</td>
+</tr>
+
+</table>
+
 <div ng-repeat="total in orderTotal">
     <h4><span>The total order amount is: {{total.total_amt | currency}}</span></h4>
 </div>
 
-<div class="well col-md-4" ng-repeat="order in ordersList">
-    <p><span>User Name: </span>{{order.name}}</p>
-    <p><span>Order Amount: </span>{{order.amount | currency}}</p>
-    <p><span>Order Date: </span>{{order.order_date | date:'shortDate'}}</p>
-    <p><span>Address Type: </span>{{order.address_type}}</p>
-    <p><span>Address: </span>{{order.address_street}}</p>
-    <p><span class="space"></span>{{order.address_city}}, {{order.address_state}} {{order.address_zip}}</p>
-</div>
+<div class="spacer"></div>
 
+<!--<div ng-repeat="total in orderTotal">-->
+    <!--<h4><span>The total order amount is: {{total.total_amt | currency}}</span></h4>-->
+<!--</div>-->
+
+<!--<div class="well col-md-4" ng-repeat="order in ordersList">-->
+    <!--<p><span>User Name: </span>{{order.name}}</p>-->
+    <!--<p><span>Order Amount: </span>{{order.amount | currency}}</p>-->
+    <!--<p><span>Order Date: </span>{{order.order_date | date:'shortDate'}}</p>-->
+    <!--<p><span>Address Type: </span>{{order.address_type}}</p>-->
+    <!--<p><span>Address: </span>{{order.address_street}}</p>-->
+    <!--<p><span class="space"></span>{{order.address_city}}, {{order.address_state}} {{order.address_zip}}</p>-->
+<!--</div>-->
 
